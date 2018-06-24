@@ -1,8 +1,8 @@
 const initialState = {
   location: { id: '1521521512', description: 'Skip the Dishes HQ' },
   cuisine: 'japanese',
-  priceRange: '',
-  deliveryTime: '',
+  priceRange: null,
+  deliveryTime: null,
 }
 
 const UPDATE_WIZARD = 'UPDATE_WIZARD'

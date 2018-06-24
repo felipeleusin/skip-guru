@@ -10,7 +10,7 @@ export const options = [
   },
   {
     id: '5252515',
-    title: 'Good Burguer',
+    title: 'Great Burguer',
     price: 99,
     picture:
       'https://images.unsplash.com/photo-1529565214304-a882ebc5a8e6?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=dbef105cc9d852a9cb4152123ea57eb2&auto=format&fit=crop&w=2250&q=80',
@@ -19,7 +19,7 @@ export const options = [
   },
   {
     id: '263463426',
-    title: 'Good Burguer',
+    title: 'So-so Burguer',
     price: 99,
     picture:
       'https://images.unsplash.com/photo-1529565214304-a882ebc5a8e6?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=dbef105cc9d852a9cb4152123ea57eb2&auto=format&fit=crop&w=2250&q=80',
@@ -28,7 +28,7 @@ export const options = [
   },
   {
     id: '264363462',
-    title: 'Good Burguer',
+    title: 'Medium Burguer',
     price: 99,
     picture:
       'https://images.unsplash.com/photo-1529565214304-a882ebc5a8e6?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=dbef105cc9d852a9cb4152123ea57eb2&auto=format&fit=crop&w=2250&q=80',

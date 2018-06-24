@@ -1,5 +1,9 @@
+import { createSelector } from 'reselect'
+import reduce from 'lodash/reduce'
+import values from 'lodash/values'
+
 const initialState = {
-  items: [],
+  items: {},
   quantities: {},
 }
 
@@ -24,17 +28,31 @@ export function updateItem({ item, quantity }) {
 }
 
 // TODO: this is a good candidate for a reselect selector if things get complicated
-export const orderSelector = ({ order: { items, quantities } }) => ({ items, quantities })
+export const orderSelector = createSelector(
+  ({ order }) => order,
+  ({ items, quantities }) => {
+    const total = reduce(
+      quantities,
+      (sum, quantity, itemId) => {
+        const item = items[itemId]
+        return sum + item.price * quantity
+      },
+      0,
+    )
+
+    return { items: values(items), quantities, total }
+  },
+)
 
 const onAddItem = (state, action) => {
   if (action.payload.clearOrder) {
     return {
-      items: [action.payload.item],
+      items: { [action.payload.item.id]: action.payload.item },
       quantities: { [action.payload.item.id]: 1 },
     }
   }
   return {
-    items: [...state.items, action.payload.item],
+    items: { ...state.items, [action.payload.item.id]: action.payload.item },
     quantities: { ...state.quantities, [action.payload.item.id]: 1 },
   }
 }

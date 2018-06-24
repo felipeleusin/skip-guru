@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import {
   Flex,
   Box,
+  Row,
+  Column,
   BackgroundImage,
   Button,
   Text,
@@ -26,6 +28,7 @@ import { options } from '~/mocks/options'
 class OrderPage extends Component {
   static propTypes = {
     updateItem: PropTypes.func.isRequired,
+    total: PropTypes.number.isRequired,
     ...RouteProps,
   }
 
@@ -40,8 +43,8 @@ class OrderPage extends Component {
   }
 
   render() {
-    const { items, quantities } = this.props
-    const item = items[0]
+    const { items, total, quantities } = this.props
+    const [item, ...others] = items
 
     if (!item) {
       return (
@@ -60,23 +63,49 @@ class OrderPage extends Component {
       <Flex flexDirection="column">
         <OrderHeader />
 
-        <Flex p={4} flexDirection="row">
-          <img css={{ width: '128px', height: '128px' }} src={item.picture} alt={item.title} />
-          <Box mx={4}>
-            <Heading>{item.title}</Heading>
-            <Subhead>
-              <PriceText>{item.price}</PriceText>
-            </Subhead>
-            <div>
-              <Label>Quantity</Label>
-              <Input
-                type="number"
-                onChange={ev => this.props.updateItem({ item, quantity: ev.target.value })}
-                value={quantities[item.id]}
-              />
-            </div>
-          </Box>
-        </Flex>
+        <Row p={4}>
+          <Column is={Flex}>
+            <img css={{ width: '128px', height: '128px' }} src={item.picture} alt={item.title} />
+            <Box mx={4}>
+              <Heading>{item.title}</Heading>
+              <Subhead>
+                <PriceText>{item.price}</PriceText>
+              </Subhead>
+              <div>
+                <Label>Quantity</Label>
+                <Input
+                  type="number"
+                  onChange={ev => this.props.updateItem({ item, quantity: ev.target.value })}
+                  value={quantities[item.id]}
+                />
+              </div>
+            </Box>
+          </Column>
+          <Column is={Flex} flexDirection="column">
+            {others.length > 0 && <Subhead>And also...</Subhead>}
+            {others.map(item => (
+              <Flex key={item.id} flexDirection="row">
+                <Box mr={2} flex="1 1 auto">
+                  <Text>{item.title}</Text>
+                  <PriceText>{item.price}</PriceText>
+                </Box>
+                <Box>
+                  <Label>Quantity</Label>
+                  <Input
+                    type="number"
+                    onChange={ev => this.props.updateItem({ item, quantity: ev.target.value })}
+                    value={quantities[item.id]}
+                  />
+                </Box>
+              </Flex>
+            ))}
+
+            <PriceText fontWeight="bold">{total}</PriceText>
+            <Button mt={4} bg="red" onClick={this.handleOrderFinish}>
+              Confirm my order!
+            </Button>
+          </Column>
+        </Row>
         <Flex p={4} flexDirection="column">
           <Heading>{item.restaurant.name}</Heading>
           <Subhead>You can also purchase:</Subhead>

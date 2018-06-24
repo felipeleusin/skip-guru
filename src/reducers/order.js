@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect'
 import reduce from 'lodash/reduce'
-import values from 'lodash/values'
 
 const initialState = {
   items: {},
+  order: [],
   quantities: {},
 }
 
@@ -36,7 +36,7 @@ export function clearOrder() {
 
 export const orderSelector = createSelector(
   ({ order }) => order,
-  ({ items, quantities }) => {
+  ({ items, order, quantities }) => {
     const total = reduce(
       quantities,
       (sum, quantity, itemId) => {
@@ -46,7 +46,7 @@ export const orderSelector = createSelector(
       0,
     )
 
-    return { items: values(items), quantities, total }
+    return { items: order.map(itemId => items[itemId]), quantities, total }
   },
 )
 
@@ -54,11 +54,13 @@ const onAddItem = (state, action) => {
   if (action.payload.clearOrder) {
     return {
       items: { [action.payload.item.id]: action.payload.item },
+      order: [action.payload.item.id],
       quantities: { [action.payload.item.id]: 1 },
     }
   }
   return {
     items: { ...state.items, [action.payload.item.id]: action.payload.item },
+    order: [...state.order, action.payload.item.id],
     quantities: { ...state.quantities, [action.payload.item.id]: 1 },
   }
 }

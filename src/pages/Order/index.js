@@ -20,6 +20,7 @@ import { RouteProps } from 'react-router-dom'
 import OrderHeader from '~/components/OrderHeader'
 import PriceText from '~/components/PriceText'
 import ItemCard from '~/components/ItemCard'
+import EmptyOrder from '~/components/EmptyOrder'
 
 import { updateItem, addItem, orderSelector } from '~/reducers/order'
 
@@ -47,15 +48,7 @@ class OrderPage extends Component {
     const [item, ...others] = items
 
     if (!item) {
-      return (
-        <Flex flexDirection="column">
-          <Text align="center">
-            <Heading mb={5}>Your order is empty!</Heading>
-
-            <Link href="/">Begin again</Link>
-          </Text>
-        </Flex>
-      )
+      return <EmptyOrder />
     }
     const { options } = this.state
 

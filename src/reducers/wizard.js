@@ -1,6 +1,6 @@
 const initialState = {
-  location: { id: '1521521512', description: 'Skip the Dishes HQ' },
-  cuisine: 'japanese',
+  location: null,
+  cuisine: null,
   priceRange: null,
   deliveryTime: null,
 }

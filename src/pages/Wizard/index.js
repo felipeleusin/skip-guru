@@ -22,7 +22,7 @@ class WizardPage extends Component {
     ...RouteProps,
   }
 
-  state = { current: 3 }
+  state = { current: 0 }
 
   setCurrentRef = ref => {
     this.currentStep = ref

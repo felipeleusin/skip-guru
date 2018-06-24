@@ -1,54 +1,10 @@
-import { createSelector } from 'reselect'
-import reduce from 'lodash/reduce'
+import { ADD_ITEM, UPDATE_ITEM_QUANTITY, CLEAR_ORDER } from './constants'
 
 const initialState = {
   items: {},
   order: [],
   quantities: {},
 }
-
-const ADD_ITEM = 'ADD_ITEM'
-const UPDATE_ITEM_QUANTITY = 'UPDATE_ITEM_QUANTITY'
-const CLEAR_ORDER = 'CLEAR_ORDER'
-
-export function addItem({ item, clearOrder }) {
-  return {
-    type: ADD_ITEM,
-    payload: { item, clearOrder },
-  }
-}
-
-export function updateItem({ item, quantity }) {
-  return {
-    type: UPDATE_ITEM_QUANTITY,
-    payload: {
-      id: item.id,
-      quantity,
-    },
-  }
-}
-
-export function clearOrder() {
-  return {
-    type: CLEAR_ORDER,
-  }
-}
-
-export const orderSelector = createSelector(
-  ({ order }) => order,
-  ({ items, order, quantities }) => {
-    const total = reduce(
-      quantities,
-      (sum, quantity, itemId) => {
-        const item = items[itemId]
-        return sum + item.price * quantity
-      },
-      0,
-    )
-
-    return { items: order.map(itemId => items[itemId]), quantities, total }
-  },
-)
 
 const onAddItem = (state, action) => {
   if (action.payload.clearOrder) {
@@ -83,3 +39,6 @@ export default function ordeerReducer(state = initialState, action) {
       return state
   }
 }
+
+export * from './actions'
+export * from './selectors'

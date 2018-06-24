@@ -1,18 +1,14 @@
 {
-  "plugins": [
-    "@babel/proposal-class-properties",
-    "emotion"
-  ],
+  "plugins": ["@babel/proposal-class-properties", "emotion"],
   "presets": [
-    ["@babel/env", {
-      "targets": {
-        "browsers": [
-          ">0.25%",
-          "not ie 11",
-          "not op_mini all"
-        ]
+    [
+      "@babel/env",
+      {
+        "targets": {
+          "browsers": [">0.25%", "not ie 11", "not op_mini all"]
+        }
       }
-    }],
+    ],
     "@babel/react"
   ]
 }

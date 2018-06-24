@@ -51,6 +51,10 @@ module.exports = {
         test: /(\.js|\.jsx)$/,
         use: 'babel-loader',
       },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        use: ['babel-loader', 'svg-react-loader'],
+      },
     ],
   },
 }

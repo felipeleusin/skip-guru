@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Fixed, Button } from 'rebass/emotion'
+import { Box, Button, Flex } from 'rebass/emotion'
 
 import LocationStep from './steps/Location'
 import FoodTypeStep from './steps/FoodType'
@@ -11,7 +11,7 @@ const mockData = {
 }
 
 export default class OptionsWizard extends Component {
-  state = { current: 0, data: mockData }
+  state = { current: 1, data: mockData }
 
   setCurrentRef = ref => {
     this.currentStep = ref
@@ -32,15 +32,15 @@ export default class OptionsWizard extends Component {
     const Step = steps[current]
 
     return (
-      <>
+      <Flex flexDirection="column" css={{ height: '100vh' }} p={2}>
         <Step ref={this.setCurrentRef} data={data} onDataChange={this.handleDataChange} />
 
-        <Fixed bottom={0} right={0} p={2}>
+        <Box alignSelf="flex-end" mt={4}>
           <Button px={4} py={3} bg="red" onClick={this.handleNextClick}>
             Continue
           </Button>
-        </Fixed>
-      </>
+        </Box>
+      </Flex>
     )
   }
 }

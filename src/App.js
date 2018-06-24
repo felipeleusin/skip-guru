@@ -10,7 +10,7 @@ import Wizard from '~/components/Wizard'
 const App = () => (
   <Provider store={store}>
     <ThemeProvider theme={theme}>
-      <Root>
+      <Root css={{ height: '100%', minHeight: '100%' }}>
         <Toolbar bg="red" color="white">
           SkipGuru
         </Toolbar>

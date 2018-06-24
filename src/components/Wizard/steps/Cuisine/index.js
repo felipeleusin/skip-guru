@@ -1,20 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Flex, Row, Column, Heading } from 'rebass/emotion'
+import { Flex, Heading } from 'rebass/emotion'
+import map from 'lodash/map'
 
 import IconButton from '~/components/IconButton'
 
-import { WizardData } from '~/propTypes/Wizard'
+import { WizardData } from '~/propTypes/wizard'
 
-import SushiIcon from '~/assets/icons/sushi.svg'
-import BurgerIcon from '~/assets/icons/hamburguer.svg'
-import AvocadoIcon from '~/assets/icons/avocado.svg'
-
-const cuisines = [
-  { type: 'japanese', label: 'Japanese', icon: SushiIcon },
-  { type: 'fastfood', label: 'FastFood', icon: BurgerIcon },
-  { type: 'fitness', label: 'Fitness', icon: AvocadoIcon },
-]
+import { cuisines } from '~/utils/cuisine'
 
 export default class WizardCuisineStep extends Component {
   static propTypes = {
@@ -31,13 +24,9 @@ export default class WizardCuisineStep extends Component {
   render() {
     return (
       <>
-        <Row p={2}>
-          <Column>
-            <Heading>Do you want an specific cuisine?</Heading>
-          </Column>
-        </Row>
+        <Heading p={2}>Do you want an specific cuisine?</Heading>
         <Flex p={2} flexWrap="wrap" justifyContent="space-around">
-          {cuisines.map(({ icon, type, label }) => (
+          {map(cuisines, ({ icon, label }, type) => (
             <IconButton
               key={type}
               icon={icon}

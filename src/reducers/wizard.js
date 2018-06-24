@@ -1,19 +1,26 @@
-const initialState = {}
+const initialState = {
+  location: { id: '1521521512', description: 'Skip the Dishes HQ' },
+  cuisine: 'japanese',
+  priceRange: '',
+  deliveryTime: '',
+}
 
-const SET_WIZARD_DATA = 'SET_WIZARD_DATA'
+const UPDATE_WIZARD = 'UPDATE_WIZARD'
 
-export function setData(data) {
+export function updateWizard(data) {
   return {
-    type: SET_WIZARD_DATA,
+    type: UPDATE_WIZARD,
     payload: {
       data,
     },
   }
 }
 
+export const wizardSelector = ({ wizard }) => ({ data: wizard })
+
 export default function wizardReducer(state = initialState, action) {
   switch (action.type) {
-    case SET_WIZARD_DATA:
+    case UPDATE_WIZARD:
       return {
         ...state,
         ...action.payload.data,

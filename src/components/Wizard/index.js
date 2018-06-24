@@ -1,25 +1,29 @@
 import React, { Component } from 'react'
-import { Box, Button, Flex } from 'rebass/emotion'
+import PropTypes from 'prop-types'
+import { Button, Flex, ButtonOutline } from 'rebass/emotion'
+import { connect } from 'react-redux'
+
+import { updateWizard, wizardSelector } from '~/reducers/wizard'
+
+import { WizardData } from '~/propTypes/wizard'
 
 import LocationStep from './steps/Location'
 import CuisineStep from './steps/Cuisine'
+import PriceRange from './steps/PriceRange'
+import DeliveryTime from './steps/DeliveryTime'
 
-const steps = [LocationStep, CuisineStep]
+const steps = [LocationStep, CuisineStep, PriceRange, DeliveryTime]
 
-const mockData = {
-  location: { id: '1521521512', description: 'Skip the Dishes HQ' },
-  cuisine: 'japanese',
-}
+class OptionsWizard extends Component {
+  static propTypes = {
+    updateWizard: PropTypes.func.isRequired,
+    data: WizardData.isRequired,
+  }
 
-export default class OptionsWizard extends Component {
-  state = { current: 1, data: mockData }
+  state = { current: 3 }
 
   setCurrentRef = ref => {
     this.currentStep = ref
-  }
-
-  handleDataChange = data => {
-    this.setState(state => ({ data: { ...state.data, ...data } }))
   }
 
   handleNextClick = () => {
@@ -28,15 +32,32 @@ export default class OptionsWizard extends Component {
     }
   }
 
+  handlePreviousClick = () => {
+    if (this.state.current > 0) {
+      this.setState(state => ({ current: state.current - 1 }))
+    }
+  }
+
   render() {
-    const { current, data } = this.state
+    const { current } = this.state
+    const { data, updateWizard } = this.props
     const Step = steps[current]
 
     return (
       <Flex flexDirection="column" p={2}>
-        <Step ref={this.setCurrentRef} data={data} onDataChange={this.handleDataChange} />
+        <Step ref={this.setCurrentRef} data={data} onDataChange={updateWizard} />
 
-        <Box alignSelf="flex-end" mt={4}>
+        <Flex flexDirection="row" justifyContent="space-between" mt={4}>
+          <ButtonOutline
+            px={4}
+            py={3}
+            border="red"
+            color="red"
+            disabled={current === 0}
+            onClick={this.handlePreviousClick}
+          >
+            Back
+          </ButtonOutline>
           <Button
             px={4}
             py={3}
@@ -44,10 +65,15 @@ export default class OptionsWizard extends Component {
             disabled={!this.currentStep || !this.currentStep.canGoToNextStep(data)}
             onClick={this.handleNextClick}
           >
-            Continue
+            {current === steps.length - 1 ? 'Show me!' : 'Continue'}
           </Button>
-        </Box>
+        </Flex>
       </Flex>
     )
   }
 }
+
+export default connect(
+  wizardSelector,
+  { updateWizard },
+)(OptionsWizard)

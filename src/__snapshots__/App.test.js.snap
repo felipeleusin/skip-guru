@@ -1,0 +1,217 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> render renders the component 1`] = `
+<ThemeProvider
+  theme={
+    Object {
+      "breakpoints": Array [
+        "568px",
+        "736px",
+        "1024px",
+        "1200px",
+      ],
+      "fontSizes": Array [
+        12,
+        14,
+        16,
+        20,
+        24,
+        32,
+        48,
+        64,
+        96,
+        128,
+      ],
+      "fonts": Object {
+        "mono": "Menlo, monospace",
+        "sans": "system-ui, sans-serif",
+      },
+      "margins": Object {
+        "lg": Array [
+          "12vw",
+          "12vw",
+          "87px",
+          "99px",
+          "108px",
+        ],
+        "md": Array [
+          "8vw",
+          "8vw",
+          "58px",
+          "66px",
+          "72px",
+        ],
+        "sm": Array [
+          "6vw",
+          "6vw",
+          "43px",
+          "49px",
+          "54px",
+        ],
+        "xl": Array [
+          "16vw",
+          "16vw",
+          "116px",
+          "136px",
+          "144px",
+        ],
+        "xs": Array [
+          "4vw",
+          "4vw",
+          "29px",
+          "33px",
+          "36px",
+        ],
+      },
+      "space": Array [
+        0,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        256,
+        512,
+      ],
+    }
+  }
+>
+  <Root
+    fontFamily="sans"
+  >
+    <Flex
+      theme={
+        Object {
+          "breakpoints": Array [
+            "40em",
+            "52em",
+            "64em",
+          ],
+          "fontSizes": Array [
+            12,
+            14,
+            16,
+            20,
+            24,
+            32,
+            48,
+            64,
+            96,
+            128,
+          ],
+          "space": Array [
+            0,
+            4,
+            8,
+            16,
+            32,
+            64,
+            128,
+            256,
+            512,
+          ],
+        }
+      }
+    >
+      <Box
+        theme={
+          Object {
+            "breakpoints": Array [
+              "40em",
+              "52em",
+              "64em",
+            ],
+            "fontSizes": Array [
+              12,
+              14,
+              16,
+              20,
+              24,
+              32,
+              48,
+              64,
+              96,
+              128,
+            ],
+            "space": Array [
+              0,
+              4,
+              8,
+              16,
+              32,
+              64,
+              128,
+              256,
+              512,
+            ],
+          }
+        }
+        w={0.5}
+      >
+        <Heading
+          fontSize={5}
+          fontWeight="bold"
+          is="h2"
+          lineHeight={1.25}
+          m={0}
+        >
+          Oie
+        </Heading>
+      </Box>
+      <Box
+        theme={
+          Object {
+            "breakpoints": Array [
+              "40em",
+              "52em",
+              "64em",
+            ],
+            "fontSizes": Array [
+              12,
+              14,
+              16,
+              20,
+              24,
+              32,
+              48,
+              64,
+              96,
+              128,
+            ],
+            "space": Array [
+              0,
+              4,
+              8,
+              16,
+              32,
+              64,
+              128,
+              256,
+              512,
+            ],
+          }
+        }
+        w={0.5}
+      >
+        Alou!!! 
+        <Button
+          bg="blue"
+          border={0}
+          borderRadius={2}
+          color="white"
+          fontSize={1}
+          fontWeight="bold"
+          is="button"
+          lineHeight={1.1428571428571428}
+          m={0}
+          px={3}
+          py={2}
+        >
+          Click
+        </Button>
+      </Box>
+    </Flex>
+  </Root>
+</ThemeProvider>
+`;

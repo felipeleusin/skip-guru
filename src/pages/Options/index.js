@@ -25,7 +25,7 @@ class OptionsPage extends Component {
     // TODO: fetchOptions from API using our machine learning algorithm
     setTimeout(() => {
       this.setState({ loading: false })
-    }, Math.floor(Math.random() * 5) + 300)
+    }, Math.floor(Math.random() * 5) + 600)
   }
 
   handleBeginOrder = item => {

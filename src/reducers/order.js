@@ -9,6 +9,7 @@ const initialState = {
 
 const ADD_ITEM = 'ADD_ITEM'
 const UPDATE_ITEM_QUANTITY = 'UPDATE_ITEM_QUANTITY'
+const CLEAR_ORDER = 'CLEAR_ORDER'
 
 export function addItem({ item, clearOrder }) {
   return {
@@ -27,7 +28,12 @@ export function updateItem({ item, quantity }) {
   }
 }
 
-// TODO: this is a good candidate for a reselect selector if things get complicated
+export function clearOrder() {
+  return {
+    type: CLEAR_ORDER,
+  }
+}
+
 export const orderSelector = createSelector(
   ({ order }) => order,
   ({ items, quantities }) => {
@@ -61,6 +67,8 @@ export default function ordeerReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_ITEM:
       return onAddItem(state, action)
+    case CLEAR_ORDER:
+      return { items: {}, quantities: {} }
     case UPDATE_ITEM_QUANTITY:
       return {
         ...state,

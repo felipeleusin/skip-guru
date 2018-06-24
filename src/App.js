@@ -9,6 +9,7 @@ import store from '~/store'
 import Wizard from '~/pages/Wizard'
 import Options from '~/pages/Options'
 import Order from './pages/Order'
+import Checkout from './pages/Checkout'
 
 const App = () => (
   <BrowserRouter>
@@ -21,6 +22,7 @@ const App = () => (
           <Route exact path="/" component={Wizard} />
           <Route path="/options" component={Options} />
           <Route path="/order" component={Order} />
+          <Route path="/checkout" component={Checkout} />
         </Root>
       </ThemeProvider>
     </Provider>

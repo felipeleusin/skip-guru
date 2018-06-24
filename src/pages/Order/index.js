@@ -38,8 +38,8 @@ class OrderPage extends Component {
     // Fetch other restaurant options from the API
   }
 
-  handleItemQuantity = () => {
-    console.log('bar')
+  handleOrderCheckout = () => {
+    this.props.history.push('/checkout')
   }
 
   render() {
@@ -67,6 +67,7 @@ class OrderPage extends Component {
           <Column is={Flex}>
             <img css={{ width: '128px', height: '128px' }} src={item.picture} alt={item.title} />
             <Box mx={4}>
+              <Heading color="blue">Your choice was</Heading>
               <Heading>{item.title}</Heading>
               <Subhead>
                 <PriceText>{item.price}</PriceText>
@@ -101,7 +102,7 @@ class OrderPage extends Component {
             ))}
 
             <PriceText fontWeight="bold">{total}</PriceText>
-            <Button mt={4} bg="red" onClick={this.handleOrderFinish}>
+            <Button mt={4} bg="red" onClick={this.handleOrderCheckout}>
               Confirm my order!
             </Button>
           </Column>

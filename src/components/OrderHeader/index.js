@@ -9,7 +9,7 @@ import { cuisines } from '~/utils/cuisine'
 
 const OrderHeader = ({ data, history }) => (
   <Message>
-    <ButtonOutline color="white" onClick={() => history.go(-1)} alignSelf="flex-end">
+    <ButtonOutline color="white" onClick={() => history.go(-1)}>
       Go back
     </ButtonOutline>
     <Box flex="1 1 auto" ml={3}>

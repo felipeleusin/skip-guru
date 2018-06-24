@@ -1,36 +1,21 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {
-  Message,
-  Flex,
-  Text,
-  Card,
-  Box,
-  Button,
-  ButtonOutline,
-  BackgroundImage,
-  Subhead,
-} from 'rebass/emotion'
+import { Flex, Text, Box, Button, BackgroundImage, Subhead } from 'rebass/emotion'
 import { connect } from 'react-redux'
-import styled from 'react-emotion'
-import { width } from 'styled-system'
 import { RouteProps } from 'react-router-dom'
 
-import { beginOrder } from '~/reducers/order'
+import { addItem } from '~/reducers/order'
 
 import ProgressDonut from '~/components/ProgressDonut'
 import PriceText from '~/components/PriceText'
 import OrderHeader from '~/components/OrderHeader'
+import ItemCard from '~/components/ItemCard'
 
 import { options } from '~/mocks/options'
 
-const ItemCard = styled(Card)`
-  ${width};
-`
-
 class OptionsPage extends Component {
   static propTypes = {
-    beginOrder: PropTypes.func.isRequired,
+    addItem: PropTypes.func.isRequired,
     ...RouteProps,
   }
 
@@ -44,7 +29,7 @@ class OptionsPage extends Component {
   }
 
   handleBeginOrder = item => {
-    this.props.beginOrder(item)
+    this.props.addItem({ item, clearOrder: true })
     this.props.history.push('/order')
   }
 
@@ -87,5 +72,5 @@ class OptionsPage extends Component {
 
 export default connect(
   null,
-  { beginOrder },
+  { addItem },
 )(OptionsPage)

@@ -1,23 +1,55 @@
 const initialState = {
-  item: null,
+  items: [],
+  quantities: {},
 }
 
-const BEGIN_ORDER = 'BEGIN_ORDER'
+const ADD_ITEM = 'ADD_ITEM'
+const UPDATE_ITEM_QUANTITY = 'UPDATE_ITEM_QUANTITY'
 
-export function beginOrder(item) {
+export function addItem({ item, clearOrder }) {
   return {
-    type: BEGIN_ORDER,
-    payload: item,
+    type: ADD_ITEM,
+    payload: { item, clearOrder },
   }
 }
 
-export const orderSelector = ({ order: { item } }) => ({ item })
+export function updateItem({ item, quantity }) {
+  return {
+    type: UPDATE_ITEM_QUANTITY,
+    payload: {
+      id: item.id,
+      quantity,
+    },
+  }
+}
+
+// TODO: this is a good candidate for a reselect selector if things get complicated
+export const orderSelector = ({ order: { items, quantities } }) => ({ items, quantities })
+
+const onAddItem = (state, action) => {
+  if (action.payload.clearOrder) {
+    return {
+      items: [action.payload.item],
+      quantities: { [action.payload.item.id]: 1 },
+    }
+  }
+  return {
+    items: [...state.items, action.payload.item],
+    quantities: { ...state.quantities, [action.payload.item.id]: 1 },
+  }
+}
 
 export default function ordeerReducer(state = initialState, action) {
   switch (action.type) {
-    case BEGIN_ORDER:
+    case ADD_ITEM:
+      return onAddItem(state, action)
+    case UPDATE_ITEM_QUANTITY:
       return {
-        item: action.payload,
+        ...state,
+        quantities: {
+          ...state.quantities,
+          [action.payload.id]: action.payload.quantity,
+        },
       }
     default:
       return state

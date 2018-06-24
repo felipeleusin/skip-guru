@@ -8,6 +8,7 @@ import store from '~/store'
 
 import Wizard from '~/pages/Wizard'
 import Options from '~/pages/Options'
+import Order from './pages/Order'
 
 const App = () => (
   <BrowserRouter>
@@ -19,6 +20,7 @@ const App = () => (
           </Toolbar>
           <Route exact path="/" component={Wizard} />
           <Route path="/options" component={Options} />
+          <Route path="/order" component={Order} />
         </Root>
       </ThemeProvider>
     </Provider>

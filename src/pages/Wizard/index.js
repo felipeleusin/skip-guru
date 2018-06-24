@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Button, Flex, ButtonOutline } from 'rebass/emotion'
 import { connect } from 'react-redux'
+import { RouteProps } from 'react-router-dom'
 
 import { updateWizard, wizardSelector } from '~/reducers/wizard'
 
@@ -14,10 +15,11 @@ import DeliveryTime from './steps/DeliveryTime'
 
 const steps = [LocationStep, CuisineStep, PriceRange, DeliveryTime]
 
-class OptionsWizard extends Component {
+class WizardPage extends Component {
   static propTypes = {
     updateWizard: PropTypes.func.isRequired,
     data: WizardData.isRequired,
+    ...RouteProps,
   }
 
   state = { current: 3 }
@@ -29,6 +31,8 @@ class OptionsWizard extends Component {
   handleNextClick = () => {
     if (this.state.current < steps.length - 1) {
       this.setState(state => ({ current: state.current + 1 }))
+    } else {
+      this.props.history.push('/options')
     }
   }
 
@@ -76,4 +80,4 @@ class OptionsWizard extends Component {
 export default connect(
   wizardSelector,
   { updateWizard },
-)(OptionsWizard)
+)(WizardPage)

@@ -33,6 +33,7 @@ module.exports = {
   plugins: getPlugins(),
   devServer: {
     hot: true,
+    historyApiFallback: true,
   },
   resolve: {
     alias: {

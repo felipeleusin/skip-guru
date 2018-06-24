@@ -7,6 +7,7 @@ import theme from '~/theme'
 import store from '~/store'
 
 import Wizard from '~/pages/Wizard'
+import Options from '~/pages/Options'
 
 const App = () => (
   <BrowserRouter>
@@ -17,6 +18,7 @@ const App = () => (
             <Text fontWeight="bold">SkipGuru</Text>
           </Toolbar>
           <Route exact path="/" component={Wizard} />
+          <Route path="/options" component={Options} />
         </Root>
       </ThemeProvider>
     </Provider>

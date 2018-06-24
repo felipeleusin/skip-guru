@@ -6,5 +6,6 @@ export const WizardData = PropTypes.shape({
     description: PropTypes.string.isRequired,
   }),
   cuisine: PropTypes.string,
-  foodType: PropTypes.string,
+  priceRange: PropTypes.number,
+  deliveryTime: PropTypes.number,
 })

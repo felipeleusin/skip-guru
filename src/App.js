@@ -1,21 +1,22 @@
 import React from 'react'
-import { Provider, Heading, Button, Root } from 'rebass/emotion'
-import { Flex, Box } from 'grid-styled/emotion'
+import { Provider as ThemeProvider, Toolbar, Root } from 'rebass/emotion'
+import { Provider } from 'react-redux'
 
 import theme from '~/theme'
+import store from '~/store'
+
+import Wizard from '~/components/Wizard'
 
 const App = () => (
-  <Provider theme={theme}>
-    <Root>
-      <Flex>
-        <Box w={1 / 2}>
-          <Heading>Oie</Heading>
-        </Box>
-        <Box w={1 / 2}>
-          Alou!!! <Button>Click</Button>
-        </Box>
-      </Flex>
-    </Root>
+  <Provider store={store}>
+    <ThemeProvider theme={theme}>
+      <Root>
+        <Toolbar bg="red" color="white">
+          SkipGuru
+        </Toolbar>
+        <Wizard />
+      </Root>
+    </ThemeProvider>
   </Provider>
 )
 

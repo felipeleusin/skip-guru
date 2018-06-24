@@ -17,7 +17,13 @@ const margins = {
   xl: ['16vw', '16vw', '116px', '136px', '144px'],
 }
 
+const colors = {
+  red: '#E91431',
+  lightRed: 'rgba(233, 20, 49, 0.3)',
+}
+
 const theme = {
+  colors,
   breakpoints,
   space,
   fontSizes,

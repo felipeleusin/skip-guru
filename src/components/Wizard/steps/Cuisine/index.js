@@ -4,23 +4,28 @@ import { Flex, Row, Column, Heading } from 'rebass/emotion'
 
 import IconButton from '~/components/IconButton'
 
+import { WizardData } from '~/propTypes/Wizard'
+
 import SushiIcon from '~/assets/icons/sushi.svg'
 import BurgerIcon from '~/assets/icons/hamburguer.svg'
+import AvocadoIcon from '~/assets/icons/avocado.svg'
 
-const foodTypes = [
-  { type: 'sushi', label: 'Sushi', icon: SushiIcon },
-  { type: 'burguer', label: 'Burguer', icon: BurgerIcon },
+const cuisines = [
+  { type: 'japanese', label: 'Japanese', icon: SushiIcon },
+  { type: 'fastfood', label: 'FastFood', icon: BurgerIcon },
+  { type: 'fitness', label: 'Fitness', icon: AvocadoIcon },
 ]
 
-export default class WizardFoodTypeStep extends Component {
+export default class WizardCuisineStep extends Component {
   static propTypes = {
     onDataChange: PropTypes.func.isRequired,
+    data: WizardData.isRequired,
   }
 
-  canGoToNextStep = data => !!data.foodType
+  canGoToNextStep = () => true
 
   handleFoodType = type => {
-    this.props.onDataChange({ foodType: type })
+    this.props.onDataChange({ cuisine: type })
   }
 
   render() {
@@ -28,17 +33,17 @@ export default class WizardFoodTypeStep extends Component {
       <>
         <Row p={2}>
           <Column>
-            <Heading>What kind of food do you want to eat?</Heading>
+            <Heading>Do you want an specific cuisine?</Heading>
           </Column>
         </Row>
         <Flex p={2} flexWrap="wrap" justifyContent="space-around">
-          {foodTypes.map(({ icon, type, label }) => (
+          {cuisines.map(({ icon, type, label }) => (
             <IconButton
               key={type}
               icon={icon}
               label={label}
               type={type}
-              selected={this.props.data.foodType === type}
+              selected={this.props.data.cuisine === type}
               onClick={this.handleFoodType}
             />
           ))}

@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import { Box, Button, Flex } from 'rebass/emotion'
 
 import LocationStep from './steps/Location'
-import FoodTypeStep from './steps/FoodType'
+import CuisineStep from './steps/Cuisine'
 
-const steps = [LocationStep, FoodTypeStep]
+const steps = [LocationStep, CuisineStep]
 
 const mockData = {
   location: { id: '1521521512', description: 'Skip the Dishes HQ' },
+  cuisine: 'japanese',
 }
 
 export default class OptionsWizard extends Component {
@@ -32,11 +33,17 @@ export default class OptionsWizard extends Component {
     const Step = steps[current]
 
     return (
-      <Flex flexDirection="column" css={{ height: '100vh' }} p={2}>
+      <Flex flexDirection="column" p={2}>
         <Step ref={this.setCurrentRef} data={data} onDataChange={this.handleDataChange} />
 
         <Box alignSelf="flex-end" mt={4}>
-          <Button px={4} py={3} bg="red" onClick={this.handleNextClick}>
+          <Button
+            px={4}
+            py={3}
+            bg="red"
+            disabled={!this.currentStep || !this.currentStep.canGoToNextStep(data)}
+            onClick={this.handleNextClick}
+          >
             Continue
           </Button>
         </Box>
